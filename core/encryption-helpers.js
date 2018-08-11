@@ -1,6 +1,7 @@
 var nacl = require("tweetnacl")
 var util = require("tweetnacl-util")
 var Web3 = require("web3")
+const web3 = new Web3()
 
 var exampleEnsName = "myUsername"
 var examplePassword = "myPassword"
