@@ -43,4 +43,7 @@ function decrypt(box) {
     
 }
 
+module.exports = {
+    generate32BytesFromTwoStrings: generate32BytesFromTwoStrings
+}
 // e.g. console.log(decrypt(encrypt(exampleJson)))
