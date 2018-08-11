@@ -1,0 +1,22 @@
+{
+  "name": "dclp",
+  "version": "1.0.0",
+  "description": "ENS Hackathon (Team DCLP)",
+  "main": "ipfs.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/zincwork/dclp.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/zincwork/dclp/issues"
+  },
+  "homepage": "https://github.com/zincwork/dclp#readme",
+  "dependencies": {
+    "ipfs-api": "^23.0.0"
+  }
+}
