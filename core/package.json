@@ -1,0 +1,16 @@
+{
+  "name": "core",
+  "version": "1.0.0",
+  "description": "",
+  "main": "encryption-helpers.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "tweetnacl": "^1.0.0",
+    "tweetnacl-util": "^0.15.0",
+    "web3": "^1.0.0-beta.35"
+  }
+}

@@ -25,6 +25,7 @@ export default {
   methods: {
     submit () {
       this.error = true
+      console.log('Here!!')
       // this.heading = 'Success! You have logged in'
     }
   }
