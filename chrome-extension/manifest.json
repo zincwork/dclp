@@ -1,0 +1,31 @@
+{
+  "name": "d-last-pass",
+  "version": "1.0",
+  "description": "Log me in",
+  "permissions": ["notifications", "alarms", "tabs", "activeTab", "declarativeContent", "storage"],
+  "options_page": "options.html",
+  "background": {
+    "scripts": ["background.js"],
+    "persistent": false
+  },
+  "options_ui": {
+    "page": "options.html",
+    "open_in_tab": true
+  },
+  "page_action": {
+    "default_popup": "popup.html",
+    "default_icon": {
+      "16": "images/lock_16.png",
+      "32": "images/lock_32.png",
+      "48": "images/lock_64.png",
+      "128": "images/lock_128.png"
+    }
+  },
+  "icons": {
+    "16": "images/lock_16.png",
+    "32": "images/lock_32.png",
+    "48": "images/lock_64.png",
+    "128": "images/lock_128.png"
+  },
+  "manifest_version": 2
+}
