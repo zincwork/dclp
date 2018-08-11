@@ -13,7 +13,7 @@ var dclpInstance = dclp.at(DCLP_ENS_RESOLVER_ADDRESS)
 
 // ENS Functions
 
-function set(domain, ipfsHash) {
+export function set(domain, ipfsHash) {
   web3.eth.getTransactionCount(USER_ADDRESS, function(err, txCount) {
     const domainHash = web3.sha3(domain)
     const txData = {
@@ -34,5 +34,13 @@ function set(domain, ipfsHash) {
   })
 } 
 
+export function get(domain) {
+    const domainHash = web3.sha3(domain)
+    dclpInstance.getHash.call(domainHash, function(err, res) {
+      console.log(err, res)
+    })
+} 
 
- set("8d0dee9e0ae4fa6e284a3b5a8443014ef9558b95282eb749460c56e98a58d9cb","qw0dee9e0ae4fa6e284a3b5a8443014ef9558b95282eb749460c56e98a58d9cb")
+
+//  set("amazon","qw0dee9e0ae4fa6e284a3b5a8443014ef9558b95282eb749460c56e98a58d9cb")
+//  get("amazon")
