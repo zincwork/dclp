@@ -1,6 +1,6 @@
 var nacl = require("tweetnacl")
 var util = require("tweetnacl-util")
-var web3 = require("web3")
+var Web3 = require("web3")
 
 var exampleEnsName = "myUsername"
 var examplePassword = "myPassword"
@@ -14,9 +14,9 @@ var privateKey = generatePrivateKeyFromBytes32(exampleBytes32String)
 // using the username and password
 
 function generate32BytesFromTwoStrings(a, b) {
- const hash1 = web3.utils.sha3(a)
- const hash2 = web3.utils.sha3(b)
- return web3.utils.sha3(`${hash1}${hash2}`)
+ const hash1 = Web3.utils.sha3(a)
+ const hash2 = Web3.utils.sha3(b)
+ return Web3.utils.sha3(`${hash1}${hash2}`)
 }
 
 // Generate a privateKey deterministically 

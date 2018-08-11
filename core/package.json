@@ -5,8 +5,8 @@
   "main": "encryption-helpers.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "build": "browserify encryption-helpers.js > dist/core.js && webpack-cli",
-    "publish": "npm run build && cp ./dist/core.bundle.js* ../chrome-extension/"
+    "build": "browserify encryption-helpers.js > dist/core.js",
+    "publish": "npm run build && cp ./dist/core.js ../chrome-extension/"
   },
   "author": "",
   "license": "ISC",
@@ -17,10 +17,7 @@
   },
   "devDependencies": {
     "browserify": "^16.2.2",
-    "browserify-shim": "^3.8.14",
-    "webpack": "^4.16.5",
-    "webpack-cli": "^3.1.0",
-    "webpack-concat-plugin": "^3.0.0"
+    "browserify-shim": "^3.8.14"
   },
   "browserify": {
     "transform": [
@@ -28,6 +25,6 @@
     ]
   },
   "browserify-shim": {
-    "web3": "global:web3"
+    "web3": "global:Web3"
   }
 }
