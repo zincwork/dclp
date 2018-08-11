@@ -4,7 +4,9 @@
   "description": "",
   "main": "encryption-helpers.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "build": "browserify encryption-helpers.js > dist/core.js",
+    "publish": "npm run build && cp ./dist/core.js ../chrome-extension/"
   },
   "author": "",
   "license": "ISC",
@@ -12,6 +14,18 @@
     "ethereumjs-tx": "^1.3.7",
     "tweetnacl": "^1.0.0",
     "tweetnacl-util": "^0.15.0",
-    "web3": "^0.20.0"
+    "web3": "^1.0.0-beta.35"
+  },
+  "devDependencies": {
+    "browserify": "^16.2.2",
+    "browserify-shim": "^3.8.14"
+  },
+  "browserify": {
+    "transform": [
+      "browserify-shim"
+    ]
+  },
+  "browserify-shim": {
+    "web3": "global:Web3"
   }
 }

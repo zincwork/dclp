@@ -1,6 +1,6 @@
 var nacl = require("tweetnacl")
 var util = require("tweetnacl-util")
-var web3 = require("web3")
+var Web3 = require("web3")
 
 var exampleEnsName = "myUsername"
 var examplePassword = "myPassword"
@@ -43,4 +43,7 @@ function decrypt(box) {
     
 }
 
+module.exports = {
+    generate32BytesFromTwoStrings: generate32BytesFromTwoStrings
+}
 // e.g. console.log(decrypt(encrypt(exampleJson)))
