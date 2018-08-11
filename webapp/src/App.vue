@@ -84,7 +84,7 @@ export default {
       }
     },
     createAccount(){
-      if(this.confirmPassword !== this.password && this.password === ""){
+      if(this.confirmPassword !== this.password || this.password === ""){
         this.error = true
       }
       else {
