@@ -11,11 +11,12 @@ DCLP_ENS_RESOLVER_ADDRESS = "0x3aF6597B35F36b7f4eC8164FCa5b3819b7bB1588"
 var dclp = web3.eth.contract(DCLP_RESOLVER_ABI)
 var dclpInstance = dclp.at(DCLP_ENS_RESOLVER_ADDRESS)
 
-// ENS Functions
+// web3 function 
+// e.g. set("amazon", "mySecurePassword123", "qw03j382919s929292")
 
-export function set(domain, ipfsHash) {
+function set(domain, password, ipfsHash) {
   web3.eth.getTransactionCount(USER_ADDRESS, function(err, txCount) {
-    const domainHash = web3.sha3(domain)
+    const domainHash = web3.sha3(`${domain}${password}`)
     const txData = {
       nonce: web3.toHex(txCount),
       gasLimit: web3.toHex(300000),
@@ -34,13 +35,11 @@ export function set(domain, ipfsHash) {
   })
 } 
 
-export function get(domain) {
-    const domainHash = web3.sha3(domain)
+// e.g. get("amazon", "mySecurePassword123")
+
+function get(domain, password) {
+  const domainHash = web3.sha3(`${domain}${password}`)
     dclpInstance.getHash.call(domainHash, function(err, res) {
       console.log(err, res)
     })
 } 
-
-
-//  set("amazon","qw0dee9e0ae4fa6e284a3b5a8443014ef9558b95282eb749460c56e98a58d9cb")
-//  get("amazon")
