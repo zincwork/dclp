@@ -1,6 +1,6 @@
 
 var ipfs = {}
-ipfs.qw123 = "kBMji596dM2lbVAETIiY0cmdebLJanCGlC/rf2NAbX1lYNLnD5Nq1x93lPOA5MkCeFPWOGdgHiN3i/Tt3ErOK5wKhB7gB2kc8bw="
+ipfs.qw123 = "/vNGIManRgI0QQQv8SMTnpDwMOaBP3PUyDXpOm1dcWByV4Oud90rmlogy7bQ7cEbdRyUSmJwASR8nP2g0kbmbNVezBvjWnkE8+yIgybVQl6rskZMDVsWlybMVH2BXatI"
 
 
 exports.storeCredentials = function storeCredentials(applicationName, applicationUsername, applicationPassword, applicationUrl, userEncryptionKey, userWeb3PrivateKey, userPassword, userWeb3Address) {
