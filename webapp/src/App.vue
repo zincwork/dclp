@@ -178,8 +178,8 @@ export default {
         console.log({credentials})
         chrome.tabs.executeScript({
             code: '(' + function(params) {
-              document.getElementById('login_field').value = credentials.username
-              document.getElementById('password').value = credentials.password
+              document.getElementById('login_field').value = params.username
+              document.getElementById('password').value = params.password
               document.forms[0].submit();
             } + ')(' + credentials + ');'
         }, function(results) {
