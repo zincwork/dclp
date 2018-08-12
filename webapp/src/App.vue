@@ -133,11 +133,16 @@ export default {
         store("ensName", this.ensName)
         store("password",this.password)
         store("web3PrivateKey", window.web3Helpers.generateWeb3Account(this.ensName, this.password).privateKey)
+<<<<<<< HEAD
         console.log("your ETH privateKey:", window.web3Helpers.generateWeb3Account(this.ensName, this.password).privateKey)
         store("web3Address", window.web3Helpers.generateWeb3Account(this.ensName, this.password).address)
         console.log("your ETH address:", window.web3Helpers.generateWeb3Account(this.ensName, this.password).address)
         store("encryptionKey", window.encryptionHelpers.generateEncryptionKeyFromUsernameAndPassword(this.ensName, this.password))
         console.log("your ENCRYPTION privateKey:", window.encryptionHelpers.generateEncryptionKeyFromUsernameAndPassword(this.ensName, this.password))
+=======
+        store("web3Address", window.web3Helpers.generateWeb3Account(this.ensName, this.password).address)
+        store("encryptionKey", window.web3Helpers.generateEncryptionKeyFromUsernameAndPassword(this.ensName, this.password))
+>>>>>>> 59e1590f557fcfc54f6ed9ac913690a7a7bcc068
         store("loggedIn",true)
         this.reset()
       }

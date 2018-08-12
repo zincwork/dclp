@@ -306,11 +306,16 @@ function toComment(sourceMap) {
         __WEBPACK_IMPORTED_MODULE_0_store2___default()("ensName", this.ensName);
         __WEBPACK_IMPORTED_MODULE_0_store2___default()("password", this.password);
         __WEBPACK_IMPORTED_MODULE_0_store2___default()("web3PrivateKey", window.web3Helpers.generateWeb3Account(this.ensName, this.password).privateKey);
+<<<<<<< HEAD
         console.log("your ETH privateKey:", window.web3Helpers.generateWeb3Account(this.ensName, this.password).privateKey);
         __WEBPACK_IMPORTED_MODULE_0_store2___default()("web3Address", window.web3Helpers.generateWeb3Account(this.ensName, this.password).address);
         console.log("your ETH address:", window.web3Helpers.generateWeb3Account(this.ensName, this.password).address);
         __WEBPACK_IMPORTED_MODULE_0_store2___default()("encryptionKey", window.encryptionHelpers.generateEncryptionKeyFromUsernameAndPassword(this.ensName, this.password));
         console.log("your ENCRYPTION privateKey:", window.encryptionHelpers.generateEncryptionKeyFromUsernameAndPassword(this.ensName, this.password));
+=======
+        __WEBPACK_IMPORTED_MODULE_0_store2___default()("web3Address", window.web3Helpers.generateWeb3Account(this.ensName, this.password).address);
+        __WEBPACK_IMPORTED_MODULE_0_store2___default()("encryptionKey", window.web3Helpers.generateEncryptionKeyFromUsernameAndPassword(this.ensName, this.password));
+>>>>>>> 59e1590f557fcfc54f6ed9ac913690a7a7bcc068
         __WEBPACK_IMPORTED_MODULE_0_store2___default()("loggedIn", true);
         this.reset();
       }
