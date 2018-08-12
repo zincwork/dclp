@@ -1,10 +1,20 @@
 var Web3 = require("web3")
 const tx = require('ethereumjs-tx')
+const wallet = require('ethereumjs-wallet')
 const web3Provider = new Web3.providers.HttpProvider("https://ropsten.infura.io/Njt2otjIXgtpcsbCtIhW");
 const web3 = new Web3(web3Provider)
 
-var USER_PRIVATE_KEY = "525e13e98d945933f4120ab15a1f24f21b2c58a82fe62560db093c6115b12969"
-var USER_ADDRESS = "0x5Fd5d2d289d9cb427327f8505049529Ff9741AF2"
+
+//  e.g. generateWeb3AccountFromUsernameAndPassword("myUsername", "myPassword")
+
+ function generateWeb3AccountFromUsernameAndPassword(username, password) {
+  const hash1 = web3.sha3(username)
+  const hash2 = web3.sha3(password)
+  const bytes32 = web3.sha3(`${hash1}${hash2}`)
+  const privateKey = wallet.fromPrivateKey(new Buffer(bytes32.substr(2,66), "hex")).getPrivateKey().toString('hex')
+  const address = wallet.fromPrivateKey(new Buffer(bytes32.substr(2,66), "hex")).getAddress().toString('hex')
+  return { privatekey: privateKey, address: address}
+ }
 
 DCLP_RESOLVER_ABI = JSON.parse('[{"constant":true,"inputs":[{"name":"domainHash","type":"bytes32"}],"name":"getHash","outputs":[{"name":"","type":"string"}],"payable":false,"stateMutability":"view","type":"function"},{"constant":false,"inputs":[{"name":"domainHash","type":"bytes32"},{"name":"valueHash","type":"string"}],"name":"add","outputs":[],"payable":false,"stateMutability":"nonpayable","type":"function"}]');
 DCLP_ENS_RESOLVER_ADDRESS = "0x3aF6597B35F36b7f4eC8164FCa5b3819b7bB1588"
@@ -14,7 +24,7 @@ var dclpInstance = dclp.at(DCLP_ENS_RESOLVER_ADDRESS)
 // web3 function 
 // e.g. set("amazon", "mySecurePassword123", "qw03j382919s929292")
 
-function set(domain, password, ipfsHash) {
+function set(domain, password, ipfsHash, userPrivateKey) {
   web3.eth.getTransactionCount(USER_ADDRESS, function(err, txCount) {
     const domainHash = web3.sha3(`${domain}${password}`)
     const txData = {
@@ -25,7 +35,7 @@ function set(domain, password, ipfsHash) {
       from: USER_ADDRESS,
       data: dclpInstance.add.getData(domainHash, ipfsHash)
     }
-    const privateKey = new Buffer(USER_PRIVATE_KEY, "hex")
+    const privateKey = new Buffer(userPrivateKey, "hex")
     const transaction = new tx(txData)
     transaction.sign(privateKey)
     const serializedTx = transaction.serialize().toString("hex")
