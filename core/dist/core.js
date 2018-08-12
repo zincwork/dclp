@@ -74,15 +74,29 @@ var ipfsAPI = require('ipfs-api')
 
 var ipfs = ipfsAPI('ipfs.infura.io', '5001', {protocol: 'https'}) 
 
-const hello = {
-    a:"b",
-    b:"B"
+exports.addToIpfs = function addToIpfs(data) {
+
+    return ipfs.add(new Buffer(JSON.stringify(data)))
+    .then(function(res) {
+        return res;
+    }).catch(function(err) {
+        return err
+    })
+
 }
-ipfs.add(new Buffer(JSON.stringify(hello))).then(function(res) {
-    console.log(res)
-}).catch(function(err) {
-    console.log(err)
-})
+
+
+ exports.getFromIpfs = function getFromIpfs(hash) {
+    return ipfs.cat(hash)
+    .then(function(res) {
+        return res.toString("utf8")
+    }).catch(function(err) {
+        return err.toString("utf8")
+    })
+
+}
+
+
 }).call(this,require("buffer").Buffer)
 },{"buffer":98,"ipfs-api":241}],4:[function(require,module,exports){
 'use strict';
@@ -133469,7 +133483,7 @@ var dclpInstance = dclp.at(DCLP_ENS_RESOLVER_ADDRESS)
 // web3 function 
 // e.g. set("amazon", "mySecurePassword123", "qw03j382919s929292")
 
-function set(domain, password, ipfsHash, userPrivateKey, userAddress) {
+exports.set = function set(domain, password, ipfsHash, userPrivateKey, userAddress) {
   web3.eth.getTransactionCount(userAddress, function(err, txCount) {
     const domainHash = web3.sha3(`${domain}${password}`)
     const txData = {
@@ -133492,7 +133506,7 @@ function set(domain, password, ipfsHash, userPrivateKey, userAddress) {
 
 //e.g. get("amazon", "mySecurePassword123").then(console.log)
 
-function get(domain, password) {
+exports.get = function get(domain, password) {
   return new Promise(function(resolve, reject) {
   const domainHash = web3.sha3(`${domain}${password}`)
     dclpInstance.getHash.call(domainHash, function(err, res) {
