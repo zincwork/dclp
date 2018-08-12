@@ -111,13 +111,13 @@ export default {
       this.ensName = store("ensName")
     },
     async storeCredentials(applicationName, applicationUsername, applicationPassword, applicationUrl, userEncryptionKey, userWeb3PrivateKey, userPassword, userWeb3Address) {
-      var box = encrypt(`{ applicationName, applicationUsername, applicationPassword, applicationUrl }`, userEncryptionKey)
-      var ipfsHash = await add(box)
+      var box = window.encrypt(`{ applicationName, applicationUsername, applicationPassword, applicationUrl }`, userEncryptionKey)
+      var ipfsHash = await window.add(box)
       set(applicationName, userPassword, ipfsHash, userWeb3PrivateKey, userAddress)
     },
     async getCredentials(application, userWeb3PrivateKey, userPassword) {
-      get(application, userPassword).then((box) => {
-        var open = decrypt(box, userEncryptionKey)
+      window.get(application, userPassword).then((box) => {
+        var open = window.decrypt(box, userEncryptionKey)
         return open 
       })
     },
