@@ -32,29 +32,6 @@
         </div>
         
       </v-layout>
-      <!-- <v-layout v-else row>
-        <v-flex>
-          <v-toolbar color="green" dark>
-            <v-toolbar-side-icon></v-toolbar-side-icon>
-            <v-toolbar-title>Accounts</v-toolbar-title>
-            <v-spacer></v-spacer>
-            <v-btn icon>
-              <v-icon>search</v-icon>
-            </v-btn>
-            <v-btn icon>
-              <v-icon>more_vert</v-icon>
-            </v-btn>
-          </v-toolbar>
-          <v-list>
-            <v-list-tile v-for="item in items" :key="item.title" @click="">
-              <v-list-tile-content>
-                <v-btn flat block>{{item.title}}</v-btn>
-              </v-list-tile-content>
-            </v-list-tile>
-          </v-list>
-          <v-btn block color="green">Add Password</v-btn>
-        </v-flex>
-      </v-layout> -->
       <v-layout v-if="addCredentials" align-center justify-center fill-height>
       <v-modal v-if="addCredentials">      
         <v-card class="pa-3">
@@ -152,12 +129,13 @@ export default {
         this.error = true
       }
       else {
+        console.log(window)
         store("accountCreated",true)
         store("ensName", this.ensName)
         store("password",this.password)
-        store("web3PrivateKey", generateWeb3AccountFromusernameAndPassword(this.ensName, this.password).privateKey)
-        store("web3Address", generateWeb3AccountFromusernameAndPassword(this.ensName, this.password).address)
-        store("encryptionKey", generateEncryptionKeyFromUsernameAndPassword(this.ensName, this.password))
+        store("web3PrivateKey", window.web3Helpers.generateWeb3AccountFromusernameAndPassword(this.ensName, this.password).privateKey)
+        store("web3Address", window.web3Helpers.generateWeb3AccountFromusernameAndPassword(this.ensName, this.password).address)
+        store("encryptionKey", window.web3Helpers.generateEncryptionKeyFromUsernameAndPassword(this.ensName, this.password))
         store("loggedIn",true)
         this.reset()
       }
@@ -180,7 +158,7 @@ export default {
       window.web3Helpers.set(applicationName, userPassword, ipfsHash, userWeb3PrivateKey, userAddress)
     },
     async getCredentials(application, userWeb3PrivateKey, userPassword) {
-      window.web3Helpers.get(application, userPassword).then((ipfsHash) => {
+      window.web3Helpers.get(application, userPassword).then(async (ipfsHash) => {
         var box = await window.ipfs.get(ipfshash)
         var open = window.encryptionHelpers.decrypt(box, userEncryptionKey)
         return open 

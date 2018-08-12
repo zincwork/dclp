@@ -7,7 +7,7 @@ const web3 = new Web3(web3Provider)
 
 //  e.g. generateWeb3AccountFromUsernameAndPassword("myUsername", "myPassword")
 
- function generateWeb3AccountFromUsernameAndPassword(username, password) {
+ exports.generateWeb3AccountFromUsernameAndPassword = function generateWeb3AccountFromUsernameAndPassword(username, password) {
   const hash1 = web3.sha3(username)
   const hash2 = web3.sha3(password)
   const bytes32 = web3.sha3(`${hash1}${hash2}`)

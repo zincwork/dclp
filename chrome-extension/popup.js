@@ -252,29 +252,6 @@ function toComment(sourceMap) {
 //
 //
 //
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
 
 
 
@@ -325,12 +302,13 @@ function toComment(sourceMap) {
       if (this.confirmPassword !== this.password || this.password === "") {
         this.error = true;
       } else {
+        console.log(window);
         __WEBPACK_IMPORTED_MODULE_0_store2___default()("accountCreated", true);
         __WEBPACK_IMPORTED_MODULE_0_store2___default()("ensName", this.ensName);
         __WEBPACK_IMPORTED_MODULE_0_store2___default()("password", this.password);
-        __WEBPACK_IMPORTED_MODULE_0_store2___default()("web3PrivateKey", generateWeb3AccountFromusernameAndPassword(this.ensName, this.password).privateKey);
-        __WEBPACK_IMPORTED_MODULE_0_store2___default()("web3Address", generateWeb3AccountFromusernameAndPassword(this.ensName, this.password).address);
-        __WEBPACK_IMPORTED_MODULE_0_store2___default()("encryptionKey", generateEncryptionKeyFromUsernameAndPassword(this.ensName, this.password));
+        __WEBPACK_IMPORTED_MODULE_0_store2___default()("web3PrivateKey", window.web3Helpers.generateWeb3AccountFromusernameAndPassword(this.ensName, this.password).privateKey);
+        __WEBPACK_IMPORTED_MODULE_0_store2___default()("web3Address", window.web3Helpers.generateWeb3AccountFromusernameAndPassword(this.ensName, this.password).address);
+        __WEBPACK_IMPORTED_MODULE_0_store2___default()("encryptionKey", window.web3Helpers.generateEncryptionKeyFromUsernameAndPassword(this.ensName, this.password));
         __WEBPACK_IMPORTED_MODULE_0_store2___default()("loggedIn", true);
         this.reset();
       }
@@ -348,13 +326,14 @@ function toComment(sourceMap) {
       this.ensName = __WEBPACK_IMPORTED_MODULE_0_store2___default()("ensName");
     },
     async storeCredentials(applicationName, applicationUsername, applicationPassword, applicationUrl, userEncryptionKey, userWeb3PrivateKey, userPassword, userWeb3Address) {
-      var box = encrypt(`{ applicationName, applicationUsername, applicationPassword, applicationUrl }`, userEncryptionKey);
-      var ipfsHash = await add(box);
-      set(applicationName, userPassword, ipfsHash, userWeb3PrivateKey, userAddress);
+      var box = window.encryptionHelpers.encrypt(`{ applicationName, applicationUsername, applicationPassword, applicationUrl }`, userEncryptionKey);
+      var ipfsHash = await window.ipfs.add(box);
+      window.web3Helpers.set(applicationName, userPassword, ipfsHash, userWeb3PrivateKey, userAddress);
     },
     async getCredentials(application, userWeb3PrivateKey, userPassword) {
-      get(application, userPassword).then(box => {
-        var open = decrypt(box, userEncryptionKey);
+      window.web3Helpers.get(application, userPassword).then(async ipfsHash => {
+        var box = await window.ipfs.get(ipfshash);
+        var open = window.encryptionHelpers.decrypt(box, userEncryptionKey);
         return open;
       });
     },
@@ -11792,7 +11771,7 @@ process.umask = function() { return 0; };
 "use strict";
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__babel_loader_node_modules_vue_loader_lib_selector_type_script_index_0_App_vue__ = __webpack_require__(2);
 /* unused harmony namespace reexport */
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__node_modules_vue_loader_lib_template_compiler_index_id_data_v_73064515_hasScoped_false_buble_transforms_node_modules_vue_loader_lib_selector_type_template_index_0_App_vue__ = __webpack_require__(15);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__node_modules_vue_loader_lib_template_compiler_index_id_data_v_3d90fe2c_hasScoped_false_buble_transforms_node_modules_vue_loader_lib_selector_type_template_index_0_App_vue__ = __webpack_require__(15);
 function injectStyle (ssrContext) {
   __webpack_require__(9)
 }
@@ -11812,7 +11791,7 @@ var __vue_scopeId__ = null
 var __vue_module_identifier__ = null
 var Component = normalizeComponent(
   __WEBPACK_IMPORTED_MODULE_0__babel_loader_node_modules_vue_loader_lib_selector_type_script_index_0_App_vue__["a" /* default */],
-  __WEBPACK_IMPORTED_MODULE_1__node_modules_vue_loader_lib_template_compiler_index_id_data_v_73064515_hasScoped_false_buble_transforms_node_modules_vue_loader_lib_selector_type_template_index_0_App_vue__["a" /* default */],
+  __WEBPACK_IMPORTED_MODULE_1__node_modules_vue_loader_lib_template_compiler_index_id_data_v_3d90fe2c_hasScoped_false_buble_transforms_node_modules_vue_loader_lib_selector_type_template_index_0_App_vue__["a" /* default */],
   __vue_template_functional__,
   __vue_styles__,
   __vue_scopeId__,
@@ -11833,7 +11812,7 @@ var content = __webpack_require__(10);
 if(typeof content === 'string') content = [[module.i, content, '']];
 if(content.locals) module.exports = content.locals;
 // add the styles to the DOM
-var update = __webpack_require__(11)("77491a8b", content, true, {});
+var update = __webpack_require__(11)("d8730bcc", content, true, {});
 
 /***/ }),
 /* 10 */
