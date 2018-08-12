@@ -5,7 +5,7 @@
   "main": "encryption-helpers.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "build": "browserify encryption-helpers.js web3-helpers.js ipfs.js > dist/core.js",
+    "build": "browserify export.js > dist/core.js",
     "publish": "npm run build && cp ./dist/core.js ../chrome-extension/"
   },
   "author": "",
