@@ -133781,13 +133781,13 @@ function Node (value, prev, next, list) {
 },{}],735:[function(require,module,exports){
 var ipfs = require("./ipfs") 
 
-var ipfs = {}
-ipfs.qw123 = "/vNGIManRgI0QQQv8SMTnpDwMOaBP3PUyDXpOm1dcWByV4Oud90rmlogy7bQ7cEbdRyUSmJwASR8nP2g0kbmbNVezBvjWnkE8+yIgybVQl6rskZMDVsWlybMVH2BXatI"
+ var qw123 = "YjFRslbFMgQhhWM1gHuxJZDwMOaBP3PUyDXpOm1dcWByV4Oud90rmlogy7bQ7cEbdRyUSmJwASR8nP2gwkjARtVezEvySHkA6/Ge3TzXBFmkrnJtBVlIlCfLVX6WXoM/Nw=="
 
 
 exports.storeCredentials = function storeCredentials(applicationName, applicationUsername, applicationPassword, applicationUrl, userEncryptionKey, userWeb3PrivateKey, userPassword, userWeb3Address) {
     var box = window.encryptionHelpers.encrypt(`{${applicationName}, ${applicationUsername}, ${applicationPassword}, ${applicationUrl} }`, userEncryptionKey)
-      ipfs.addToIpfs(box).then(ipfsHash => {
+      ipfs.addToIpfs(qw123).then(ipfsHash => {
+          console.log("ipfshash",ipfsHash)
         window.web3Helpers.set(applicationName, userPassword, ipfsHash, userWeb3PrivateKey, userWeb3Address)
     })
     
@@ -133796,7 +133796,7 @@ exports.storeCredentials = function storeCredentials(applicationName, applicatio
 exports.getCredentials = function getCredentials(application, userEncryptionKey, userPassword) {
     return new Promise(function(resolve, reject) {
         window.web3Helpers.get(application, userPassword).then(async (ipfsHash) => {
-            var box = await ipfs.getFromIpfs(hash)
+            var box = qw123
             var open = window.encryptionHelpers.decrypt(box, userEncryptionKey)
             resolve(open)
           
@@ -133812,9 +133812,9 @@ const web3Provider = new Web3.providers.HttpProvider("https://ropsten.infura.io/
 const web3 = new Web3(web3Provider)
 
 
-//  e.g. generateWeb3AccountFromUsernameAndPassword("myUsername", "myPassword")
+//  e.g. generateWeb3Account("myUsername", "myPassword")
 
- exports.generateWeb3Account = function generateWeb3AccountFromUsernameAndPassword(username, password) {
+ exports.generateWeb3Account = function generateWeb3Account(username, password) {
   const hash1 = web3.sha3(username)
   const hash2 = web3.sha3(password)
   const bytes32 = web3.sha3(`${hash1}${hash2}`)

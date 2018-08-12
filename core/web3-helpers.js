@@ -5,9 +5,9 @@ const web3Provider = new Web3.providers.HttpProvider("https://ropsten.infura.io/
 const web3 = new Web3(web3Provider)
 
 
-//  e.g. generateWeb3AccountFromUsernameAndPassword("myUsername", "myPassword")
+//  e.g. generateWeb3Account("myUsername", "myPassword")
 
- exports.generateWeb3Account = function generateWeb3AccountFromUsernameAndPassword(username, password) {
+ exports.generateWeb3Account = function generateWeb3Account(username, password) {
   const hash1 = web3.sha3(username)
   const hash2 = web3.sha3(password)
   const bytes32 = web3.sha3(`${hash1}${hash2}`)

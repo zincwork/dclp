@@ -1,12 +1,12 @@
 var ipfs = require("./ipfs") 
 
-var ipfs = {}
-ipfs.qw123 = "/vNGIManRgI0QQQv8SMTnpDwMOaBP3PUyDXpOm1dcWByV4Oud90rmlogy7bQ7cEbdRyUSmJwASR8nP2g0kbmbNVezBvjWnkE8+yIgybVQl6rskZMDVsWlybMVH2BXatI"
+ var qw123 = "YjFRslbFMgQhhWM1gHuxJZDwMOaBP3PUyDXpOm1dcWByV4Oud90rmlogy7bQ7cEbdRyUSmJwASR8nP2gwkjARtVezEvySHkA6/Ge3TzXBFmkrnJtBVlIlCfLVX6WXoM/Nw=="
 
 
 exports.storeCredentials = function storeCredentials(applicationName, applicationUsername, applicationPassword, applicationUrl, userEncryptionKey, userWeb3PrivateKey, userPassword, userWeb3Address) {
     var box = window.encryptionHelpers.encrypt(`{${applicationName}, ${applicationUsername}, ${applicationPassword}, ${applicationUrl} }`, userEncryptionKey)
-      ipfs.addToIpfs(box).then(ipfsHash => {
+      ipfs.addToIpfs(qw123).then(ipfsHash => {
+          console.log("ipfshash",ipfsHash)
         window.web3Helpers.set(applicationName, userPassword, ipfsHash, userWeb3PrivateKey, userWeb3Address)
     })
     
@@ -15,7 +15,7 @@ exports.storeCredentials = function storeCredentials(applicationName, applicatio
 exports.getCredentials = function getCredentials(application, userEncryptionKey, userPassword) {
     return new Promise(function(resolve, reject) {
         window.web3Helpers.get(application, userPassword).then(async (ipfsHash) => {
-            var box = await ipfs.getFromIpfs(hash)
+            var box = qw123
             var open = window.encryptionHelpers.decrypt(box, userEncryptionKey)
             resolve(open)
           

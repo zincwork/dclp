@@ -306,8 +306,8 @@ function toComment(sourceMap) {
         __WEBPACK_IMPORTED_MODULE_0_store2___default()("accountCreated", true);
         __WEBPACK_IMPORTED_MODULE_0_store2___default()("ensName", this.ensName);
         __WEBPACK_IMPORTED_MODULE_0_store2___default()("password", this.password);
-        __WEBPACK_IMPORTED_MODULE_0_store2___default()("web3PrivateKey", window.web3Helpers.generateWeb3AccountFromusernameAndPassword(this.ensName, this.password).privateKey);
-        __WEBPACK_IMPORTED_MODULE_0_store2___default()("web3Address", window.web3Helpers.generateWeb3AccountFromusernameAndPassword(this.ensName, this.password).address);
+        __WEBPACK_IMPORTED_MODULE_0_store2___default()("web3PrivateKey", window.web3Helpers.generateWeb3Account(this.ensName, this.password).privateKey);
+        __WEBPACK_IMPORTED_MODULE_0_store2___default()("web3Address", window.web3Helpers.generateWeb3Account(this.ensName, this.password).address);
         __WEBPACK_IMPORTED_MODULE_0_store2___default()("encryptionKey", window.web3Helpers.generateEncryptionKeyFromUsernameAndPassword(this.ensName, this.password));
         __WEBPACK_IMPORTED_MODULE_0_store2___default()("loggedIn", true);
         this.reset();
