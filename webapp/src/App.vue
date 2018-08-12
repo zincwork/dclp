@@ -154,8 +154,8 @@ export default {
     },
     async storeCredentials(applicationName, applicationUsername, applicationPassword, applicationUrl, userEncryptionKey, userWeb3PrivateKey, userPassword, userWeb3Address) {
       var box = window.encryptionHelpers.encrypt(`{ applicationName, applicationUsername, applicationPassword, applicationUrl }`, userEncryptionKey)
-      var ipfsHash = await window.ipfs.add(box)
-      window.web3Helpers.set(applicationName, userPassword, ipfsHash, userWeb3PrivateKey, userAddress)
+      // var ipfsHash = await window.ipfs.add(box)
+      // window.web3Helpers.set(applicationName, userPassword, ipfsHash, userWeb3PrivateKey, userAddress)
     },
     async getCredentials(application, userWeb3PrivateKey, userPassword) {
       window.web3Helpers.get(application, userPassword).then(async (ipfsHash) => {
@@ -171,6 +171,12 @@ export default {
   mounted(){
     window.chrome.tabs.getSelected(null, function(tab) {
       console.log(tab.url)
+      // if(/https:\/\/github\.com\/login.*/.test(tab.url)) {
+      //   console.log('injecting crets')
+      //   document.getElementById('login_field').value = "user"
+      //   document.getElementById('password').value = "pass"
+      //   document.getElementsByTagName('form').submit();
+      // }
     })
   }
 }
