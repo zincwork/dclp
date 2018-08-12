@@ -13,7 +13,7 @@ const web3 = new Web3(web3Provider)
   const bytes32 = web3.sha3(`${hash1}${hash2}`)
   const privateKey = wallet.fromPrivateKey(new Buffer(bytes32.substr(2,66), "hex")).getPrivateKey().toString('hex')
   const address = wallet.fromPrivateKey(new Buffer(bytes32.substr(2,66), "hex")).getAddress().toString('hex')
-  return { privatekey: privateKey, address: address}
+  return { privateKey: privateKey, address: address}
  }
 
 DCLP_RESOLVER_ABI = JSON.parse('[{"constant":true,"inputs":[{"name":"domainHash","type":"bytes32"}],"name":"getHash","outputs":[{"name":"","type":"string"}],"payable":false,"stateMutability":"view","type":"function"},{"constant":false,"inputs":[{"name":"domainHash","type":"bytes32"},{"name":"valueHash","type":"string"}],"name":"add","outputs":[],"payable":false,"stateMutability":"nonpayable","type":"function"}]');

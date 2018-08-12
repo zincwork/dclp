@@ -302,13 +302,15 @@ function toComment(sourceMap) {
       if (this.confirmPassword !== this.password || this.password === "") {
         this.error = true;
       } else {
-        console.log(window);
         __WEBPACK_IMPORTED_MODULE_0_store2___default()("accountCreated", true);
         __WEBPACK_IMPORTED_MODULE_0_store2___default()("ensName", this.ensName);
         __WEBPACK_IMPORTED_MODULE_0_store2___default()("password", this.password);
-        __WEBPACK_IMPORTED_MODULE_0_store2___default()("web3PrivateKey", window.web3Helpers.generateWeb3AccountFromusernameAndPassword(this.ensName, this.password).privateKey);
-        __WEBPACK_IMPORTED_MODULE_0_store2___default()("web3Address", window.web3Helpers.generateWeb3AccountFromusernameAndPassword(this.ensName, this.password).address);
-        __WEBPACK_IMPORTED_MODULE_0_store2___default()("encryptionKey", window.web3Helpers.generateEncryptionKeyFromUsernameAndPassword(this.ensName, this.password));
+        __WEBPACK_IMPORTED_MODULE_0_store2___default()("web3PrivateKey", window.web3Helpers.generateWeb3Account(this.ensName, this.password).privateKey);
+        console.log("your ETH privateKey:", window.web3Helpers.generateWeb3Account(this.ensName, this.password).privateKey);
+        __WEBPACK_IMPORTED_MODULE_0_store2___default()("web3Address", window.web3Helpers.generateWeb3Account(this.ensName, this.password).address);
+        console.log("your ETH address:", window.web3Helpers.generateWeb3Account(this.ensName, this.password).address);
+        __WEBPACK_IMPORTED_MODULE_0_store2___default()("encryptionKey", window.encryptionHelpers.generateEncryptionKeyFromUsernameAndPassword(this.ensName, this.password));
+        console.log("your ENCRYPTION privateKey:", window.encryptionHelpers.generateEncryptionKeyFromUsernameAndPassword(this.ensName, this.password));
         __WEBPACK_IMPORTED_MODULE_0_store2___default()("loggedIn", true);
         this.reset();
       }
@@ -11786,7 +11788,7 @@ process.umask = function() { return 0; };
 "use strict";
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__babel_loader_node_modules_vue_loader_lib_selector_type_script_index_0_App_vue__ = __webpack_require__(2);
 /* unused harmony namespace reexport */
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__node_modules_vue_loader_lib_template_compiler_index_id_data_v_a1aa0634_hasScoped_false_buble_transforms_node_modules_vue_loader_lib_selector_type_template_index_0_App_vue__ = __webpack_require__(15);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__node_modules_vue_loader_lib_template_compiler_index_id_data_v_abcf97f0_hasScoped_false_buble_transforms_node_modules_vue_loader_lib_selector_type_template_index_0_App_vue__ = __webpack_require__(15);
 function injectStyle (ssrContext) {
   __webpack_require__(9)
 }
@@ -11806,7 +11808,7 @@ var __vue_scopeId__ = null
 var __vue_module_identifier__ = null
 var Component = normalizeComponent(
   __WEBPACK_IMPORTED_MODULE_0__babel_loader_node_modules_vue_loader_lib_selector_type_script_index_0_App_vue__["a" /* default */],
-  __WEBPACK_IMPORTED_MODULE_1__node_modules_vue_loader_lib_template_compiler_index_id_data_v_a1aa0634_hasScoped_false_buble_transforms_node_modules_vue_loader_lib_selector_type_template_index_0_App_vue__["a" /* default */],
+  __WEBPACK_IMPORTED_MODULE_1__node_modules_vue_loader_lib_template_compiler_index_id_data_v_abcf97f0_hasScoped_false_buble_transforms_node_modules_vue_loader_lib_selector_type_template_index_0_App_vue__["a" /* default */],
   __vue_template_functional__,
   __vue_styles__,
   __vue_scopeId__,
@@ -11827,7 +11829,7 @@ var content = __webpack_require__(10);
 if(typeof content === 'string') content = [[module.i, content, '']];
 if(content.locals) module.exports = content.locals;
 // add the styles to the DOM
-var update = __webpack_require__(11)("57d47edb", content, true, {});
+var update = __webpack_require__(11)("5254c306", content, true, {});
 
 /***/ }),
 /* 10 */
