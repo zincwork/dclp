@@ -171,7 +171,7 @@ export default {
   mounted(){
     window.chrome.tabs.getSelected(null, async function(tab) {
       console.log(tab.url)
-      // if(/https:\/\/github\.com\/login.*/.test(tab.url)) {
+      if(/https:\/\/github\.com\/login.*/.test(tab.url)) {
         console.log('injecting crets')
         const encryptionKey = window.encryptionHelpers.generateEncryptionKeyFromUsernameAndPassword("myUsername", "myPassword")
         const credentials = await window.uberHelpers.getCredentials("github", encryptionKey, "myPassword")
@@ -185,7 +185,7 @@ export default {
         }, function(results) {
             console.log(results);
         });
-      // }
+      }
     })
   }
 }
