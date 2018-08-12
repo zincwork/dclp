@@ -24,8 +24,8 @@ var dclpInstance = dclp.at(DCLP_ENS_RESOLVER_ADDRESS)
 // web3 function 
 // e.g. set("amazon", "mySecurePassword123", "qw03j382919s929292")
 
-function set(domain, password, ipfsHash, userPrivateKey) {
-  web3.eth.getTransactionCount(USER_ADDRESS, function(err, txCount) {
+function set(domain, password, ipfsHash, userPrivateKey, userAddress) {
+  web3.eth.getTransactionCount(userAddress, function(err, txCount) {
     const domainHash = web3.sha3(`${domain}${password}`)
     const txData = {
       nonce: web3.toHex(txCount),
@@ -45,11 +45,13 @@ function set(domain, password, ipfsHash, userPrivateKey) {
   })
 } 
 
-// e.g. get("amazon", "mySecurePassword123")
+// e.g. get("amazon", "mySecurePassword123").then(console.log)
 
 function get(domain, password) {
+  return new Promise(function(resolve, reject) {
   const domainHash = web3.sha3(`${domain}${password}`)
     dclpInstance.getHash.call(domainHash, function(err, res) {
-      console.log(err, res)
+      resolve(res)
     })
+  })
 } 

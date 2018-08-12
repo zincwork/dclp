@@ -91,6 +91,9 @@ export default {
         store("accountCreated",true)
         store("ensName", this.ensName)
         store("password",this.password)
+        store("web3PrivateKey", generateWeb3AccountFromusernameAndPassword(this.ensName, this.password).privateKey)
+        store("web3Address", generateWeb3AccountFromusernameAndPassword(this.ensName, this.password).address)
+        store("encryptionKey", generateEncryptionKeyFromUsernameAndPassword(this.ensName, this.password))
         store("loggedIn",true)
         this.reset()
       }
@@ -103,9 +106,20 @@ export default {
       this.error = false
       this.password = null
       this.confirmPassword = null
-      this.accountCreated=store("accountCreated")
-      this.loggedIn= store("loggedIn")
+      this.accountCreated = store("accountCreated")
+      this.loggedIn = store("loggedIn")
       this.ensName = store("ensName")
+    },
+    async storeCredentials(applicationName, applicationUsername, applicationPassword, applicationUrl, userEncryptionKey, userWeb3PrivateKey, userPassword, userWeb3Address) {
+      var box = encrypt(`{ applicationName, applicationUsername, applicationPassword, applicationUrl }`, userEncryptionKey)
+      var ipfsHash = await add(box)
+      set(applicationName, userPassword, ipfsHash, userWeb3PrivateKey, userAddress)
+    },
+    async getCredentials(application, userWeb3PrivateKey, userPassword) {
+      get(application, userPassword).then((box) => {
+        var open = decrypt(box, userEncryptionKey)
+        return open 
+      })
     }
   }
 }
