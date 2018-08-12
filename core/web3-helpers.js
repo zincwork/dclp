@@ -45,7 +45,7 @@ function set(domain, password, ipfsHash, userPrivateKey, userAddress) {
   })
 } 
 
-// e.g. get("amazon", "mySecurePassword123").then(console.log)
+//e.g. get("amazon", "mySecurePassword123").then(console.log)
 
 function get(domain, password) {
   return new Promise(function(resolve, reject) {
