@@ -26,13 +26,14 @@ var dclpInstance = dclp.at(DCLP_ENS_RESOLVER_ADDRESS)
 
 exports.set = function set(domain, password, ipfsHash, userPrivateKey, userAddress) {
   web3.eth.getTransactionCount(userAddress, function(err, txCount) {
+    console.log(err, txCount)
     const domainHash = web3.sha3(`${domain}${password}`)
     const txData = {
       nonce: web3.toHex(txCount),
       gasLimit: web3.toHex(300000),
       gasPrice: web3.toHex(10e10),
       to: "0x3aF6597B35F36b7f4eC8164FCa5b3819b7bB1588",
-      from: USER_ADDRESS,
+      from: userAddress,
       data: dclpInstance.add.getData(domainHash, ipfsHash)
     }
     const privateKey = new Buffer(userPrivateKey, "hex")

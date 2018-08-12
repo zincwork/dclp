@@ -7,8 +7,10 @@ exports.addToIpfs = function addToIpfs(data) {
     return ipfs.add(new Buffer(JSON.stringify(data)))
     .then(function(res) {
         return res;
+        console.log(res)
     }).catch(function(err) {
         return err
+        console.log(err)
     })
 
 }
