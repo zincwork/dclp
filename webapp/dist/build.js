@@ -221,8 +221,6 @@ function toComment(sourceMap) {
 //
 //
 //
-//
-//
 
 
 
@@ -241,6 +239,9 @@ function toComment(sourceMap) {
   computed: {
     ensNameSaved() {
       return Boolean(__WEBPACK_IMPORTED_MODULE_0_store2___default()('ensName'));
+    },
+    url() {
+      this.$route;
     }
   },
   methods: {
@@ -254,6 +255,7 @@ function toComment(sourceMap) {
     },
     login() {
       if (this.password === __WEBPACK_IMPORTED_MODULE_0_store2___default()("password")) {
+        console.log("logged in");
         __WEBPACK_IMPORTED_MODULE_0_store2___default()("ensName", this.ensName);
         __WEBPACK_IMPORTED_MODULE_0_store2___default()("loggedIn", true);
         this.reset();
@@ -283,7 +285,15 @@ function toComment(sourceMap) {
       this.accountCreated = __WEBPACK_IMPORTED_MODULE_0_store2___default()("accountCreated");
       this.loggedIn = __WEBPACK_IMPORTED_MODULE_0_store2___default()("loggedIn");
       this.ensName = __WEBPACK_IMPORTED_MODULE_0_store2___default()("ensName");
+    },
+    getUrl(tab) {
+      this.url = tab.url;
     }
+  },
+  mounted() {
+    window.chrome.tabs.getSelected(null, function (tab) {
+      console.log(tab.url);
+    });
   }
 });
 
@@ -11710,7 +11720,7 @@ process.umask = function() { return 0; };
 "use strict";
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__babel_loader_node_modules_vue_loader_lib_selector_type_script_index_0_App_vue__ = __webpack_require__(2);
 /* unused harmony namespace reexport */
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__node_modules_vue_loader_lib_template_compiler_index_id_data_v_0b846cd1_hasScoped_false_buble_transforms_node_modules_vue_loader_lib_selector_type_template_index_0_App_vue__ = __webpack_require__(15);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__node_modules_vue_loader_lib_template_compiler_index_id_data_v_9b99b802_hasScoped_false_buble_transforms_node_modules_vue_loader_lib_selector_type_template_index_0_App_vue__ = __webpack_require__(15);
 function injectStyle (ssrContext) {
   __webpack_require__(9)
 }
@@ -11730,7 +11740,7 @@ var __vue_scopeId__ = null
 var __vue_module_identifier__ = null
 var Component = normalizeComponent(
   __WEBPACK_IMPORTED_MODULE_0__babel_loader_node_modules_vue_loader_lib_selector_type_script_index_0_App_vue__["a" /* default */],
-  __WEBPACK_IMPORTED_MODULE_1__node_modules_vue_loader_lib_template_compiler_index_id_data_v_0b846cd1_hasScoped_false_buble_transforms_node_modules_vue_loader_lib_selector_type_template_index_0_App_vue__["a" /* default */],
+  __WEBPACK_IMPORTED_MODULE_1__node_modules_vue_loader_lib_template_compiler_index_id_data_v_9b99b802_hasScoped_false_buble_transforms_node_modules_vue_loader_lib_selector_type_template_index_0_App_vue__["a" /* default */],
   __vue_template_functional__,
   __vue_styles__,
   __vue_scopeId__,
@@ -11751,7 +11761,7 @@ var content = __webpack_require__(10);
 if(typeof content === 'string') content = [[module.i, content, '']];
 if(content.locals) module.exports = content.locals;
 // add the styles to the DOM
-var update = __webpack_require__(11)("53c7a16c", content, true, {});
+var update = __webpack_require__(11)("476960d1", content, true, {});
 
 /***/ }),
 /* 10 */
@@ -12402,7 +12412,7 @@ module.exports = function normalizeComponent (
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
-var render = function () {var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;return _c('v-layout',{attrs:{"align-center":"","justify-center":"","fill-height":"","column":""}},[_c('v-card',{staticClass:"pa-4 text-xs-center main"},[(!_vm.loggedIn)?_c('v-layout',{attrs:{"column":"","justify-space-around":"","align-center":"","fill-height":""}},[_c('v-avatar',{staticClass:"mb-4 mt-4"},[_c('v-icon',{attrs:{"color":"green","size":_vm.accountCreated?'128px':'72px'}},[_vm._v("verified_user")])],1),_vm._v(" "),(!_vm.accountCreated)?_c('h3',{staticClass:"mb-3"},[_vm._v("Please create your password and store them in a secure place")]):_vm._e(),_vm._v(" "),(_vm.accountCreated)?_c('v-spacer'):_vm._e(),_vm._v(" "),(_vm.accountCreated)?_c('v-spacer'):_vm._e(),_vm._v(" "),(_vm.accountCreated && !_vm.ensNameSaved)?_c('div',{staticClass:"login-new"},[_c('v-spacer'),_vm._v(" "),_c('v-text-field',{staticClass:"mb-3",attrs:{"solo":"","hide-details":"","placeholder":"ENS name","suffix":".dclp.eth"},model:{value:(_vm.ensName),callback:function ($$v) {_vm.ensName=$$v},expression:"ensName"}}),_vm._v(" "),_c('v-text-field',{staticClass:"mb-3",attrs:{"solo":"","hide-details":"","placeholder":"Password","type":"password"},model:{value:(_vm.password),callback:function ($$v) {_vm.password=$$v},expression:"password"}}),_vm._v(" "),(_vm.error)?_c('h3',{staticClass:"red--text"},[_vm._v("Incorrect Password")]):_c('v-spacer'),_vm._v(" "),_c('v-btn',{staticClass:"white--text",attrs:{"block":"","color":"green"},on:{"click":_vm.login}},[_vm._v("Login")])],1):(!_vm.accountCreated && !_vm.ensNameSaved)?_c('div',{staticClass:"signup"},[_c('v-text-field',{staticClass:"mb-3",attrs:{"solo":"","hide-details":"","placeholder":"ENS name","suffix":".dclp.eth"},model:{value:(_vm.ensName),callback:function ($$v) {_vm.ensName=$$v},expression:"ensName"}}),_vm._v(" "),_c('v-text-field',{staticClass:"mb-3",attrs:{"solo":"","hide-details":"","placeholder":"Password","type":"password"},model:{value:(_vm.password),callback:function ($$v) {_vm.password=$$v},expression:"password"}}),_vm._v(" "),_c('v-text-field',{staticClass:"mb-3",attrs:{"solo":"","hide-details":"","placeholder":"Confirm password","type":"password"},model:{value:(_vm.confirmPassword),callback:function ($$v) {_vm.confirmPassword=$$v},expression:"confirmPassword"}}),_vm._v(" "),(_vm.error)?_c('h3',{staticClass:"red--text"},[_vm._v(" Passwords do not match")]):_c('v-spacer'),_vm._v(" "),_c('v-btn',{staticClass:"white--text",attrs:{"block":"","color":"green"},on:{"click":_vm.createAccount}},[_vm._v("Create Account")])],1):(_vm.accountCreated && _vm.ensNameSaved)?_c('div',{staticClass:"login"},[_c('v-spacer'),_vm._v(" "),_c('v-spacer'),_vm._v(" "),_c('v-text-field',{staticClass:"mb-3",attrs:{"solo":"","hide-details":"","placeholder":"Password","type":"password"},model:{value:(_vm.password),callback:function ($$v) {_vm.password=$$v},expression:"password"}}),_vm._v(" "),(_vm.error)?_c('h3',{staticClass:"red--text"},[_vm._v("Incorrect Password")]):_c('v-spacer'),_vm._v(" "),_c('v-btn',{staticClass:"white--text",attrs:{"block":"","color":"green"},on:{"click":_vm.submit}},[_vm._v("Submit")])],1):_vm._e()],1):_c('v-layout',{attrs:{"column":"","justify-space-around":"","align-center":"","fill-height":""}},[_c('h1',[_vm._v(" Log in SUCCESS!!")]),_vm._v(" "),_c('v-btn',{staticClass:"white--text",attrs:{"bottom":"","color":"green"},on:{"click":_vm.logout}},[_vm._v("Log out")])],1)],1)],1)}
+var render = function () {var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;return _c('v-layout',{attrs:{"align-center":"","justify-center":"","fill-height":"","column":""}},[_c('v-card',{staticClass:"pa-4 text-xs-center main"},[(!_vm.loggedIn)?_c('v-layout',{attrs:{"column":"","justify-space-around":"","align-center":"","fill-height":""}},[_c('v-avatar',{staticClass:"mb-4 mt-4"},[_c('v-icon',{attrs:{"color":"green","size":_vm.accountCreated?'128px':'72px'}},[_vm._v("verified_user")])],1),_vm._v(" "),(!_vm.accountCreated)?_c('h3',{staticClass:"mb-3"},[_vm._v("Please create your password and store them in a secure place")]):_vm._e(),_vm._v(" "),(_vm.accountCreated && !_vm.ensNameSaved)?_c('div',{staticClass:"login-new"},[_c('v-spacer'),_vm._v(" "),_c('v-text-field',{staticClass:"mb-3",attrs:{"solo":"","hide-details":"","placeholder":"ENS name","suffix":".dclp.eth"},model:{value:(_vm.ensName),callback:function ($$v) {_vm.ensName=$$v},expression:"ensName"}}),_vm._v(" "),_c('v-text-field',{staticClass:"mb-3",attrs:{"solo":"","hide-details":"","placeholder":"Password","type":"password"},model:{value:(_vm.password),callback:function ($$v) {_vm.password=$$v},expression:"password"}}),_vm._v(" "),(_vm.error)?_c('h3',{staticClass:"red--text"},[_vm._v("Incorrect Password")]):_c('v-spacer'),_vm._v(" "),_c('v-btn',{staticClass:"white--text",attrs:{"block":"","color":"green"},on:{"click":_vm.login}},[_vm._v("Login")])],1):(!_vm.accountCreated && !_vm.ensNameSaved)?_c('div',{staticClass:"signup"},[_c('v-text-field',{staticClass:"mb-3",attrs:{"solo":"","hide-details":"","placeholder":"ENS name","suffix":".dclp.eth"},model:{value:(_vm.ensName),callback:function ($$v) {_vm.ensName=$$v},expression:"ensName"}}),_vm._v(" "),_c('v-text-field',{staticClass:"mb-3",attrs:{"solo":"","hide-details":"","placeholder":"Password","type":"password"},model:{value:(_vm.password),callback:function ($$v) {_vm.password=$$v},expression:"password"}}),_vm._v(" "),_c('v-text-field',{staticClass:"mb-3",attrs:{"solo":"","hide-details":"","placeholder":"Confirm password","type":"password"},model:{value:(_vm.confirmPassword),callback:function ($$v) {_vm.confirmPassword=$$v},expression:"confirmPassword"}}),_vm._v(" "),(_vm.error)?_c('h3',{staticClass:"red--text"},[_vm._v(" Passwords do not match")]):_c('v-spacer'),_vm._v(" "),_c('v-btn',{staticClass:"white--text",attrs:{"block":"","color":"green"},on:{"click":_vm.createAccount}},[_vm._v("Create Account")])],1):(_vm.accountCreated && _vm.ensNameSaved)?_c('div',{staticClass:"login"},[_c('v-spacer'),_vm._v(" "),_c('v-text-field',{staticClass:"mb-3",attrs:{"solo":"","hide-details":"","placeholder":"Password","type":"password"},model:{value:(_vm.password),callback:function ($$v) {_vm.password=$$v},expression:"password"}}),_vm._v(" "),(_vm.error)?_c('h3',{staticClass:"red--text"},[_vm._v("Incorrect Password")]):_c('v-spacer'),_vm._v(" "),_c('v-btn',{staticClass:"white--text",attrs:{"block":"","color":"green"},on:{"click":_vm.submit}},[_vm._v("Submit")])],1):_vm._e()],1):_c('v-layout',{attrs:{"column":"","justify-space-around":"","align-center":"","fill-height":""}},[_c('h1',[_vm._v(" Log in SUCCESS!!")]),_vm._v(" "),_c('v-btn',{staticClass:"white--text",attrs:{"bottom":"","color":"green"},on:{"click":_vm.logout}},[_vm._v("Log out")])],1)],1)],1)}
 var staticRenderFns = []
 var esExports = { render: render, staticRenderFns: staticRenderFns }
 /* harmony default export */ __webpack_exports__["a"] = (esExports);

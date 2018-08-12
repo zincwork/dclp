@@ -106,7 +106,15 @@ export default {
       this.accountCreated=store("accountCreated")
       this.loggedIn= store("loggedIn")
       this.ensName = store("ensName")
+    },
+    getUrl(tab){
+      this.url = tab.url
     }
+  },
+  mounted(){
+    window.chrome.tabs.getSelected(null, function(tab) {
+      console.log(tab.url)
+    })
   }
 }
 </script>
