@@ -14,8 +14,10 @@ var exampleJson = `{"appName": "gmail", "username": "geeogi", "password": "secur
 module.exports = {
  
     generateEncryptionKeyFromUsernameAndPassword: function generateEncryptionKeyFromUsernameAndPassword(username, password) {
-        var bytes32String = generate32BytesFromTwoStrings(username, password)
-        return generatePrivateKeyFromBytes32(bytes32String)
+        const hash1 = web3.sha3(username)
+        const hash2 = web3.sha3(password)
+        var bytes32String = web3.sha3(`${hash1}${hash2}`)
+        return util.encodeBase64(window.encryptionHelpers.generatePrivateKeyFromBytes32(bytes32String))
     },
 
     // Generate a bytes32 string deterministically 
@@ -37,7 +39,7 @@ module.exports = {
     // Encrypt a string
 
     encrypt: function encrypt(message, userPrivateKey) {
-        const box = nacl.secretbox(util.decodeUTF8(message), exampleNonce, userPrivateKey)
+        const box = nacl.secretbox(util.decodeUTF8(message), exampleNonce, util.decodeBase64(userPrivateKey))
         const encoded = util.encodeBase64(box)
         return encoded
     },
@@ -45,7 +47,7 @@ module.exports = {
     // Decrypt a string
 
     decrypt: function decrypt(box, userPrivateKey) {
-        const open  = nacl.secretbox.open(util.decodeBase64(box), exampleNonce, userPrivateKey)
+        const open  = nacl.secretbox.open(util.decodeBase64(box), exampleNonce, util.decodeBase64(userPrivateKey))
         const encoded = util.encodeUTF8(open)
         return encoded
         

@@ -112,12 +112,12 @@ export default {
     },
     async storeCredentials(applicationName, applicationUsername, applicationPassword, applicationUrl, userEncryptionKey, userWeb3PrivateKey, userPassword, userWeb3Address) {
       var box = window.encryptionHelpers.encrypt(`{ applicationName, applicationUsername, applicationPassword, applicationUrl }`, userEncryptionKey)
-      var ipfsHash = await window.ipfs.add(box)
+      var ipfsHash = await window.ipfs.addToIpfs(box)
       window.web3Helpers.set(applicationName, userPassword, ipfsHash, userWeb3PrivateKey, userAddress)
     },
     async getCredentials(application, userWeb3PrivateKey, userPassword) {
       window.web3Helpers.get(application, userPassword).then((ipfsHash) => {
-        var box = await window.ipfs.get(ipfshash)
+        var box = await window.ipfs.getToIpfs(ipfshash)
         var open = window.encryptionHelpers.decrypt(box, userEncryptionKey)
         return open 
       })
