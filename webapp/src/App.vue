@@ -120,7 +120,15 @@ export default {
         var open = decrypt(box, userEncryptionKey)
         return open 
       })
+    },
+    getUrl(tab){
+      this.url = tab.url
     }
+  },
+  mounted(){
+    window.chrome.tabs.getSelected(null, function(tab) {
+      console.log(tab.url)
+    })
   }
 }
 </script>
