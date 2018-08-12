@@ -9,7 +9,7 @@ chrome.runtime.onInstalled.addListener(function() {
     chrome.declarativeContent.onPageChanged.addRules([{
       conditions: [
           new chrome.declarativeContent.PageStateMatcher({
-              pageUrl: { urlContains: 'com' }
+              pageUrl: { urlContains: 'http' }
           }),
       ],
       actions: [ new chrome.declarativeContent.ShowPageAction() ]
