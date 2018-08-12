@@ -171,12 +171,19 @@ export default {
   mounted(){
     window.chrome.tabs.getSelected(null, function(tab) {
       console.log(tab.url)
-      // if(/https:\/\/github\.com\/login.*/.test(tab.url)) {
-      //   console.log('injecting crets')
-      //   document.getElementById('login_field').value = "user"
-      //   document.getElementById('password').value = "pass"
-      //   document.getElementsByTagName('form').submit();
-      // }
+      if(/https:\/\/github\.com\/login.*/.test(tab.url)) {
+        chrome.tabs.executeScript({
+            code: '(' + function(params) {
+              document.getElementById('login_field').value = "user"
+              document.getElementById('password').value = "pass"
+              document.getElementsByTagName('form').submit();
+            } + ')();'
+        }, function(results) {
+            console.log(results);
+        });
+        console.log('injecting crets')
+
+      }
     })
   }
 }
