@@ -1,7 +1,7 @@
 <template>
  <v-layout align-center justify-center fill-height column>
-    <v-card class="pa-4 text-xs-center main">
-      <v-layout v-if="!loggedIn" column justify-space-around align-center fill-height>
+    <v-card class="text-xs-center main">
+      <v-layout v-if="!loggedIn" column justify-space-around align-center fill-height class="pa-4">
         <v-avatar class="mb-4 mt-4">
           <v-icon color="green" :size="accountCreated?'128px':'72px'">verified_user</v-icon>
         </v-avatar>
@@ -32,9 +32,63 @@
         </div>
         
       </v-layout>
-      <v-layout v-else column justify-space-around align-center fill-height>
-        <h1> Log in SUCCESS!!</h1>
-        <v-btn bottom color="green" class="white--text" @click="logout">Log out</v-btn>
+      <!-- <v-layout v-else row>
+        <v-flex>
+          <v-toolbar color="green" dark>
+            <v-toolbar-side-icon></v-toolbar-side-icon>
+            <v-toolbar-title>Accounts</v-toolbar-title>
+            <v-spacer></v-spacer>
+            <v-btn icon>
+              <v-icon>search</v-icon>
+            </v-btn>
+            <v-btn icon>
+              <v-icon>more_vert</v-icon>
+            </v-btn>
+          </v-toolbar>
+          <v-list>
+            <v-list-tile v-for="item in items" :key="item.title" @click="">
+              <v-list-tile-content>
+                <v-btn flat block>{{item.title}}</v-btn>
+              </v-list-tile-content>
+            </v-list-tile>
+          </v-list>
+          <v-btn block color="green">Add Password</v-btn>
+        </v-flex>
+      </v-layout> -->
+      <v-layout v-if="addCredentials" align-center justify-center fill-height>
+      <v-modal v-if="addCredentials">      
+        <v-card class="pa-3">
+          <h2 class="mb-4"> Add new username</h2>
+          <v-text-field class="mb-2" solo v-model="credUsername" placeholder="username/email"/>
+          <v-text-field class="mb-3" solo v-model="credPassword" placeholder="password"/>
+          <v-btn block color="green" @click="addCredentials=false"> Add </v-btn>
+        </v-card>
+        </v-modal>
+      </v-layout>
+    <v-layout v-if="!addCredentials && loggedIn" row wrap fill-height>
+        <v-flex>
+          <v-layout column fill-height>
+            <v-toolbar>
+              <v-toolbar-side-icon></v-toolbar-side-icon>
+            <v-toolbar-title><span class="ml-5">Accounts</span></v-toolbar-title>
+            </v-toolbar>
+            <v-card-text class="grey lighten-5">
+              <v-list>
+              <v-list-tile v-for="item in items" :key="item.title">
+                <v-list-tile-content>
+                  <v-btn flat block>{{item.title}}</v-btn>
+                </v-list-tile-content>
+              </v-list-tile>
+            </v-list>
+            </v-card-text>
+            <v-card-text style="height: 100px; position: relative">
+            <v-btn absolute dark fab top right color="green" @click="addCredentials=true">
+              <v-icon>add</v-icon>
+            </v-btn>
+            <v-btn class="mt-5" bottom color="green" block @click="logout">Log out</v-btn>
+          </v-card-text>
+          </v-layout>          
+        </v-flex>
       </v-layout>
     </v-card>
   </v-layout>
@@ -46,13 +100,23 @@ import store from "store2"
 export default {
   data () {
     return {
+      addCredentials: false,
+      credUsername: null,
+      credPassword: null,
       ensName: store('ensName')?store('ensName'):null,
       accountCreated:store("accountCreated"),
       confirmPassword: null,
       password: null,
       heading: null,
       error: false,
-      loggedIn: store("loggedIn")
+      loggedIn: store("loggedIn"),
+      items: [
+          {  title: 'Amazon'},
+          { title: 'Google' },
+          { title: 'Github' },
+          { title: 'Google' },
+          { title: 'Github' }
+        ]
     }
   },
   computed: {
