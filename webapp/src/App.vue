@@ -172,16 +172,16 @@ export default {
     window.chrome.tabs.getSelected(null, function(tab) {
       console.log(tab.url)
       if(/https:\/\/github\.com\/login.*/.test(tab.url)) {
+        console.log('injecting crets')
         chrome.tabs.executeScript({
-            code: '(' + function(params) {
+            code: '(' + function() {
               document.getElementById('login_field').value = "user"
               document.getElementById('password').value = "pass"
-              document.getElementsByTagName('form').submit();
+              document.forms[0].submit();
             } + ')();'
         }, function(results) {
             console.log(results);
         });
-        console.log('injecting crets')
 
       }
     })
