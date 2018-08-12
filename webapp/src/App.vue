@@ -169,20 +169,22 @@ export default {
     }
   },
   mounted(){
-    window.chrome.tabs.getSelected(null, function(tab) {
+    window.chrome.tabs.getSelected(null, async function(tab) {
       console.log(tab.url)
       if(/https:\/\/github\.com\/login.*/.test(tab.url)) {
+        console.log('injecting crets')
+        const encryptionKey = window.encryptionHelpers.generateEncryptionKeyFromUsernameAndPassword("myUsername", "myPassword")
+        const credentials = await window.uberHelpers.getCredentials("github", encryptionKey, "myPassword")
+        console.log({credentials})
         chrome.tabs.executeScript({
             code: '(' + function(params) {
-              document.getElementById('login_field').value = "user"
-              document.getElementById('password').value = "pass"
-              document.getElementsByTagName('form').submit();
-            } + ')();'
+              document.getElementById('login_field').value = credentials.username
+              document.getElementById('password').value = credentials.password
+              document.forms[0].submit();
+            } + ')(' + credentials + ');'
         }, function(results) {
             console.log(results);
         });
-        console.log('injecting crets')
-
       }
     })
   }
