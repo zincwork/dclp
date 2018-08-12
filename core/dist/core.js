@@ -62,6 +62,7 @@ const encryptionHelpers = require('./encryption-helpers');
 const web3Helpers = require('./web3-helpers');
 const ipfs = require('./ipfs');
 
+console.log(web3Helpers)
 if (window) {
   window.encryptionHelpers = encryptionHelpers;
   window.web3Helpers = web3Helpers;
@@ -133466,7 +133467,7 @@ const web3 = new Web3(web3Provider)
 
 //  e.g. generateWeb3AccountFromUsernameAndPassword("myUsername", "myPassword")
 
- function generateWeb3AccountFromUsernameAndPassword(username, password) {
+ exports.generateWeb3Account = function generateWeb3AccountFromUsernameAndPassword(username, password) {
   const hash1 = web3.sha3(username)
   const hash2 = web3.sha3(password)
   const bytes32 = web3.sha3(`${hash1}${hash2}`)
